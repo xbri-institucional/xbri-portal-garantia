@@ -27,6 +27,7 @@
   --ease-soft: cubic-bezier(0.24, 0.43, 0.15, 0.97);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --dissolve: 0.7s cubic-bezier(0.33, 0, 0.2, 1); /* hovers de cor/fundo (idiomas, sociais) */
 }
 
 *,
@@ -133,7 +134,7 @@ img, video { display: block; }
   text-transform: uppercase;
   color: var(--white);
   background: rgba(255, 255, 255, 0);
-  transition: background-color 0.7s cubic-bezier(0.33, 0, 0.2, 1);
+  transition: background-color var(--dissolve);
 }
 .lang:hover { background: rgba(255, 255, 255, 0.13); }
 .lang.is-selected { background: rgba(137, 0, 3, 0.6); }
@@ -445,7 +446,7 @@ img, video { display: block; }
   width: calc(25 * var(--u));
   height: calc(25 * var(--u));
   color: var(--gray-800);
-  transition: color 0.4s var(--ease-soft);
+  transition: color var(--dissolve);
 }
 .footer__socials a:hover { color: var(--red-700); }
 .footer__socials svg { width: 100%; height: 100%; }
@@ -637,7 +638,7 @@ html.js .card-manual[data-reveal] { transition-delay: 0.14s; }
   width: calc(25 * var(--u));
   height: calc(25 * var(--u));
   color: var(--gray-300);
-  transition: color 0.5s var(--ease-soft);
+  transition: color var(--dissolve);
 }
 .menu__socials a:hover,
 .menu__socials a:focus-visible { color: var(--red-700); }
