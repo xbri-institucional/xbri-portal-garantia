@@ -91,7 +91,7 @@ img, video { display: block; }
   z-index: 1;
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.636) 0, rgba(0, 0, 0, 0) calc(218 * var(--u))),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.736) 0, rgba(0, 0, 0, 0) calc(218 * var(--u))),
     linear-gradient(119.94deg, rgba(0, 0, 0, 0.8) 33.35%, rgba(0, 0, 0, 0) 51.24%);
 }
 
