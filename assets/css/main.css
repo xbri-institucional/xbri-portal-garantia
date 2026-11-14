@@ -196,19 +196,12 @@ img, video { display: block; }
 }
 .btn-menu__line:nth-child(1) { top: calc(14.0767 * var(--u)); }
 .btn-menu__line:nth-child(2) { top: calc(19.9369 * var(--u)); }
-.btn-menu__line::before,
-.btn-menu__line::after {
+.btn-menu__line::before {
   content: "";
   position: absolute;
   inset: 0;
   background: var(--white);
-  transition: transform 0.8s var(--ease-soft);
 }
-.btn-menu__line::after { transform: translateX(-170%); }
-.btn-menu__line:nth-child(2)::before,
-.btn-menu__line:nth-child(2)::after { transition-delay: 0.15s; }
-.btn-menu:hover .btn-menu__line::before { transform: translateX(170%); }
-.btn-menu:hover .btn-menu__line::after { transform: translateX(0); }
 
 /* ---------- título ---------- */
 .hero__title {
@@ -557,19 +550,13 @@ html.js .card-manual[data-reveal] { transition-delay: 0.14s; }
   transform: translate(-50%, -50%) rotate(45deg);
 }
 .menu__close-line:nth-child(2) { transform: translate(-50%, -50%) rotate(-45deg); }
-.menu__close-line i,
-.menu__close-line::after {
+.menu__close-line i {
   position: absolute;
   inset: 0;
   background: currentColor;
-  transition: transform 0.8s var(--ease-soft);
 }
-.menu__close-line::after { content: ""; transform: translateX(-110%); }
-.menu__close-line:nth-child(2) i,
-.menu__close-line:nth-child(2)::after { transition-delay: 0.15s; }
-.menu__close:hover { color: var(--white); }
-.menu__close:hover .menu__close-line i { transform: translateX(110%); }
-.menu__close:hover .menu__close-line::after { transform: translateX(0); }
+.menu__close:hover,
+.menu__close:focus-visible { color: var(--red-700); }
 
 /* conteúdo */
 .menu__content {
