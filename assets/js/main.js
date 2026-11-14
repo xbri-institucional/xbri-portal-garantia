@@ -159,7 +159,8 @@
 
   // pré-carrega as imagens do menu
   const preload = () => items.forEach((it) => { const i = new Image(); i.decoding = 'async'; i.src = it.dataset.image; });
-  window.addEventListener('load', () => setTimeout(preload, 600));
+  if (document.readyState === 'complete') setTimeout(preload, 600);
+  else window.addEventListener('load', () => setTimeout(preload, 600));
 
   const makeLayer = (src) => {
     const layer = document.createElement('div');
