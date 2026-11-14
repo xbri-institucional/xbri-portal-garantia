@@ -127,7 +127,12 @@
   /* ---------------- entrada ---------------- */
   const ready = () => requestAnimationFrame(() => body.classList.add('is-ready'));
   const fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
-  Promise.race([fontsReady, new Promise((r) => setTimeout(r, 1500))]).then(() => setTimeout(ready, 80));
+  if (window.__XBRI_GATE) {
+    // com a tela de acesso: a entrada começa quando o acesso sai de cena
+    window.__xbriStart = ready;
+  } else {
+    Promise.race([fontsReady, new Promise((r) => setTimeout(r, 1500))]).then(() => setTimeout(ready, 80));
+  }
 
   /* ---------------- vídeos ---------------- */
   document.querySelectorAll('video').forEach((v) => {
