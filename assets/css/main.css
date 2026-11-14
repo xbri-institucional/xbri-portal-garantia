@@ -128,7 +128,7 @@ img, video { display: block; }
   height: calc(35 * var(--u));
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: calc(12 * var(--u));
+  font-size: calc(11 * var(--u));
   line-height: 1;
   text-transform: uppercase;
   color: var(--white);
