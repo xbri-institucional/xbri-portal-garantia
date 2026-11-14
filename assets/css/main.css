@@ -80,6 +80,18 @@ img, video { display: block; }
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: 0.8; /* vídeo a 80% sobre o preto, como no Figma */
+}
+
+/* contraste (fills do frame no Figma): topo p/ a nav + diagonal p/ o título */
+.hero__shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.636) 0, rgba(0, 0, 0, 0) calc(218 * var(--u))),
+    linear-gradient(119.94deg, rgba(0, 0, 0, 0.8) 33.35%, rgba(0, 0, 0, 0) 51.24%);
 }
 
 /* esfumaçado: cresce junto com o parallax ao rolar */
@@ -204,7 +216,7 @@ img, video { display: block; }
   z-index: 3;
   left: calc(150 * var(--u));
   top: 50%;
-  margin-top: calc(-50 * var(--u));
+  margin-top: calc(-54 * var(--u));
   display: flex;
   flex-direction: column;
   font-family: var(--font-display);
