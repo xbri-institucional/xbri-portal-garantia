@@ -165,18 +165,10 @@ img, video { display: block; }
   line-height: 1;
   text-transform: uppercase;
   color: var(--white);
+  transition: color var(--dissolve);
 }
-.btn-text__line {
-  position: absolute;
-  left: 0; right: 0;
-  bottom: calc(-5 * var(--u));
-  height: 1px;
-  background: currentColor;
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.8s var(--ease-soft);
-}
-.btn-text:hover .btn-text__line { transform: scaleX(1); }
+.btn-text:hover,
+.btn-text:focus-visible { color: var(--red-700); }
 
 /* botão menu 55×35 — linhas deslizam no hover */
 .btn-menu {
