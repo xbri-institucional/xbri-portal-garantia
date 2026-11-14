@@ -100,6 +100,7 @@
   const heroMedia = document.querySelector('[data-hero-media]');
   const heroTitle = document.querySelector('[data-hero-title]');
   const heroSmoke = document.querySelector('[data-hero-smoke]');
+  const homeEl = document.querySelector('.home');
 
   const onScroll = (y) => {
     const h = hero.offsetHeight;
@@ -107,7 +108,9 @@
     heroMedia.style.transform = `translate3d(0, ${(y * 0.28).toFixed(2)}px, 0)`;
     heroTitle.style.transform = `translate3d(0, ${(y * 0.46).toFixed(2)}px, 0)`;
     heroTitle.style.opacity = Math.max(0, 1 - y / (520 * unit)).toFixed(3);
-    heroSmoke.style.opacity = Math.min(1, Math.max(0, y / (320 * unit))).toFixed(3);
+    const smoke = Math.min(1, Math.max(0, y / (320 * unit))).toFixed(3);
+    heroSmoke.style.opacity = smoke;
+    homeEl.style.setProperty('--smoke', smoke);
   };
   if (lenis) lenis.on('scroll', ({ scroll }) => onScroll(scroll));
   else window.addEventListener('scroll', () => onScroll(window.scrollY), { passive: true });
