@@ -596,20 +596,26 @@ html.js .card-manual[data-reveal] { transition-delay: 0.14s; }
   transition: color 0.5s var(--ease-soft);
 }
 .menu__text { display: block; }
+.menu__text,
+.menu__line { will-change: transform; }
 .menu__line {
   position: relative;
   flex-shrink: 0;
   width: 100%;
   height: 1px;
   background: var(--red-700);
-  transform: scaleX(0);
+  transform: translateX(0) scaleX(0);
   transform-origin: left center;
-  transition: transform 0.8s var(--ease-soft);
+  transition: transform 1.1s cubic-bezier(0.19, 1, 0.22, 1);
 }
 .menu__link:hover,
 .menu__link:focus-visible { color: var(--red-700); }
+/* hover: texto e linha deslizam juntos (mesma suavização do home-link) */
+.menu__text { transition: transform 1.3s cubic-bezier(0.19, 1, 0.22, 1); }
+.menu__link:hover .menu__text,
+.menu__link:focus-visible .menu__text { transform: translateX(calc(20 * var(--u))); }
 .menu__link:focus-visible .menu__line,
-.menu__link:hover .menu__line { transform: scaleX(1); }
+.menu__link:hover .menu__line { transform: translateX(calc(20 * var(--u))) scaleX(1); }
 
 .menu__socials {
   display: flex;
