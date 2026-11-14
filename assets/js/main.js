@@ -179,11 +179,11 @@
       [...images.children].forEach((c) => { if (c !== layer) c.remove(); });
       return;
     }
-    clip(layer, 100, 0);
+    clip(layer, 0, 100);
     layer.style.transform = 'scale(1.2)';
-    tween({ from: 100, to: 0, duration: 0.8, easing: ease.cubicOut, onUpdate: (v) => clip(layer, v, 0) });
+    tween({ from: 100, to: 0, duration: 0.9, easing: ease.cubicOut, onUpdate: (v) => clip(layer, 0, v) });
     tween({
-      from: 1.2, to: 1, duration: 1.4, easing: ease.quartOut,
+      from: 1.2, to: 1, duration: 4, easing: ease.cubicOut,
       onUpdate: (v) => { layer.style.transform = `scale(${v})`; },
       onComplete: () => {
         // mantém apenas a camada final e a anterior
@@ -212,16 +212,16 @@
     current = -1;
     images.innerHTML = '';
     showImage(0, false);
-    clip(panel, 100, 0);
-    clip(media, 100, 0);
+    clip(panel, 0, 100);
+    clip(media, 0, 100);
     staggerEls.forEach((el) => { el.style.opacity = '0'; el.style.transform = `translate3d(0, ${40 * unit}px, 0)`; });
 
     requestAnimationFrame(() => {
       menu.classList.add('is-open');
-      running.push(tween({ from: 100, to: 0, duration: 1.2, easing: ease.quintInOut, onUpdate: (v) => clip(panel, v, 0) }));
+      running.push(tween({ from: 100, to: 0, duration: 1.2, easing: ease.quintInOut, onUpdate: (v) => clip(panel, 0, v) }));
       running.push(tween({
         from: 100, to: 0, duration: 1.2, delay: 0.05, easing: ease.quintInOut,
-        onUpdate: (v) => clip(media, v, 0),
+        onUpdate: (v) => clip(media, 0, v),
         onComplete: () => { state = 'open'; },
       }));
       staggerEls.forEach((el, i) => {
@@ -239,24 +239,25 @@
 
   const closeMenu = () => {
     if (state === 'closed' || state === 'closing') return;
-    // ponto de partida: quanto do painel está visível agora
-    const top = parseFloat((panel.style.clipPath.match(/inset\(([\d.]+)%/) || [0, 0])[1]) || 0;
-    const mediaTop = parseFloat((media.style.clipPath.match(/inset\(([\d.]+)%/) || [0, 0])[1]) || 0;
+    // ponto de partida: quanto do painel já está fechado (inset inferior)
+    const insetBottom = (el) => { const m = el.style.clipPath.match(/inset\(([\d.]+)% [\d.]+% ([\d.]+)%/); return m ? parseFloat(m[2]) : 0; };
+    const pb = insetBottom(panel);
+    const mb = insetBottom(media);
     killAll();
     state = 'closing';
     menu.classList.remove('is-open');
     openBtn.setAttribute('aria-expanded', 'false');
 
-    running.push(tween({ from: 0, to: 100 - mediaTop, duration: 1.1, easing: ease.quintInOut, onUpdate: (v) => clip(media, mediaTop, v) }));
+    running.push(tween({ from: mb, to: 100, duration: 1.1, easing: ease.quintInOut, onUpdate: (v) => clip(media, 0, v) }));
     running.push(tween({
-      from: 0, to: 100 - top, duration: 1.15, delay: 0.06, easing: ease.quintInOut,
-      onUpdate: (v) => clip(panel, top, v),
+      from: pb, to: 100, duration: 1.15, delay: 0.06, easing: ease.quintInOut,
+      onUpdate: (v) => clip(panel, 0, v),
       onComplete: () => {
         state = 'closed';
         menu.classList.remove('is-active');
         menu.setAttribute('aria-hidden', 'true');
-        clip(panel, 100, 0);
-        clip(media, 100, 0);
+        clip(panel, 0, 100);
+        clip(media, 0, 100);
         if (lenis) lenis.start();
         openBtn.focus({ preventScroll: true });
       },
