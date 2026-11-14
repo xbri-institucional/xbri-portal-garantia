@@ -489,7 +489,7 @@ html.js .card-manual[data-reveal] { transition-delay: 0.14s; }
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.93);
+  background: rgba(18, 18, 18, 0.93); /* no Figma o 93% de preto resulta em #121212 (02_Menu) */
   -webkit-backdrop-filter: blur(7.5px);
           backdrop-filter: blur(7.5px);
   clip-path: inset(0 0 100% 0);
@@ -566,13 +566,13 @@ html.js .card-manual[data-reveal] { transition-delay: 0.14s; }
   position: absolute;
   z-index: 2;
   left: calc(797 * var(--u));
-  top: calc(50% + 23.5 * var(--u));
+  top: 50%; /* bloco centralizado verticalmente */
   width: calc(515 * var(--u));
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: calc(112 * var(--u));
+  gap: calc(64 * var(--u)); /* ícones mais próximos da lista (Figma: 112) */
 }
 .menu__list {
   display: flex;
@@ -586,7 +586,7 @@ html.js .card-manual[data-reveal] { transition-delay: 0.14s; }
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: calc(9 * var(--u)) 0;
+  padding: 0;
   font-family: var(--font-display);
   font-weight: 300;
   font-size: calc(28 * var(--u));
@@ -597,7 +597,7 @@ html.js .card-manual[data-reveal] { transition-delay: 0.14s; }
   color: var(--gray-300);
   transition: color 0.5s var(--ease-soft);
 }
-.menu__text { display: block; }
+.menu__text { display: block; padding: calc(9 * var(--u)) 0; } /* text-wrapper py 9: a linha fica 9px abaixo do texto, como no Figma */
 .menu__text,
 .menu__line { will-change: transform; }
 .menu__line {
