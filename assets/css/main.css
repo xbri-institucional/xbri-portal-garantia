@@ -521,7 +521,7 @@ html.js .card-manual[data-reveal] { transition-delay: 0.14s; }
   clip-path: inset(0 0 100% 0);
   will-change: clip-path;
 }
-.menu__images { position: absolute; inset: 0; }
+.menu__images { position: absolute; inset: 0; z-index: 0; } /* isola o z-index das fotos (o script sobe a cada troca) para a máscara do X ficar sempre por cima */
 .menu__image {
   position: absolute;
   inset: 0;
