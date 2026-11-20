@@ -538,14 +538,14 @@ html.js .card-manual[data-reveal] { transition-delay: 0.14s; }
   max-width: none;
 }
 /* máscara fixa sobre as imagens (não troca nem anima com elas): canto superior direito
-   escurecido atrás do X — Figma: preto → transparente, 80%, no frame da imagem (679×900) */
+   escurecido atrás do X — Figma: preto 90% → transparente, estendido, no frame da imagem (679×900) */
 .menu__media::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background: linear-gradient(222.9deg, rgba(0, 0, 0, 0.8) calc(-20.4 * var(--u)), rgba(0, 0, 0, 0) calc(195.7 * var(--u)));
+  background: linear-gradient(222.9deg, rgba(0, 0, 0, 0.9) calc(-20.4 * var(--u)), rgba(0, 0, 0, 0) calc(300 * var(--u)));
 }
 
 /* fechar */
