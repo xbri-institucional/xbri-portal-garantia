@@ -526,9 +526,10 @@ html.js .card-manual[data-reveal] { transition-delay: 0.14s; }
   position: absolute;
   inset: 0;
   overflow: hidden;
-  will-change: clip-path, transform;
+  will-change: opacity, transform;
 }
 .menu__photo {
+  will-change: filter;
   position: absolute;
   left: calc(-68 / 679 * 100%);
   top: calc(-90 / 900 * 100%);

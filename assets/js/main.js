@@ -3,7 +3,7 @@
    - escala Figma (1640) -> viewport
    - smooth scroll (Lenis) + parallax / esfumaçado do header
    - entrada do título por caractere
-   - menu em tela cheia (wipe vertical, cascata dos itens, troca de imagem no hover)
+   - menu em tela cheia (wipe vertical, cascata dos itens, troca de imagem no hover com desfoque + zoom out)
    ========================================================= */
 (() => {
   'use strict';
@@ -188,9 +188,21 @@
       [...images.children].forEach((c) => { if (c !== layer) c.remove(); });
       return;
     }
-    clip(layer, 0, 100);
+    // entrada por desfoque (mesmo conceito do card "Manual de Uso e garantia"):
+    // a nova imagem surge desfocada e transparente e entra em foco por cima da anterior,
+    // junto com o zoom out
+    const BLUR = 24; // px no grid de 1640
+    // o desfoque vai na foto (maior que o quadro), para as bordas não clarearem
+    const photo = layer.firstChild;
+    layer.style.opacity = '0';
+    photo.style.filter = `blur(${BLUR * unit}px)`;
     layer.style.transform = 'scale(1.2)';
-    tween({ from: 100, to: 0, duration: 0.9, easing: ease.cubicOut, onUpdate: (v) => clip(layer, 0, v) });
+    // a imagem aparece rápido (0,9s) e o foco chega mais devagar (1,6s), para o desfoque ser percebido
+    tween({ from: 0, to: 1, duration: 0.9, easing: ease.cubicOut, onUpdate: (v) => { layer.style.opacity = String(v); } });
+    tween({
+      from: BLUR, to: 0, duration: 1.6, easing: ease.cubicOut,
+      onUpdate: (v) => { photo.style.filter = v <= 0.05 ? 'none' : `blur(${v * unit}px)`; },
+    });
     tween({
       from: 1.2, to: 1, duration: 4, easing: ease.cubicOut,
       onUpdate: (v) => { layer.style.transform = `scale(${v})`; },
